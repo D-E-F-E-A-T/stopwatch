@@ -1,6 +1,12 @@
-const elem = {a: 'alba', b: 'beata'}
-const x = {
-    c: "orakle",
-    ...elem
+class Stopwatch {
+    constructor() {
+        this.elem = this.display; 
+    }
+
+    display() {
+        const container = document.createElement('div');
+        contaier.setAttribute('id', 'container_id');
+
+        return container
+    }
 }
-console.log(x)

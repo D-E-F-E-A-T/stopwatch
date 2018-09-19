@@ -114,9 +114,25 @@ var Stopwatch = function () {
 
         this.elem = this.display();
         this.createButtons();
+        this.counter();
     }
 
     _createClass(Stopwatch, [{
+        key: 'counter',
+        value: function counter() {
+            this.elem.innerHTML += '<br>\n            <span>\n                ' + this.time().minutes + ':' + this.time().seconds + ':' + this.time().miliseconds + '\n            </span>';
+        }
+    }, {
+        key: 'time',
+        value: function time() {
+            var time = {
+                miliseconds: 0,
+                seconds: 0,
+                minutes: 0
+            };
+            return time;
+        }
+    }, {
         key: 'createButtons',
         value: function createButtons() {
             //we will refer to elements by nodes e.g this.elem.children[0]
@@ -125,6 +141,11 @@ var Stopwatch = function () {
             var buttonLop = document.createElement('button');
             var buttonClear = document.createElement('button');
             var buttonClearLop = document.createElement('button');
+            buttonStart.textContent = 'Start';
+            buttonStop.textContent = 'stop';
+            buttonLop.textContent = 'Lop';
+            buttonClear.textContent = 'Clear All';
+            buttonClearLop.textContent = 'Clear Lop';
             buttonStart.setAttribute('id', 'btn_start');
             buttonStop.setAttribute('id', 'btn_stop');
             buttonLop.setAttribute('id', 'btn_lop');
@@ -151,6 +172,6 @@ var Stopwatch = function () {
 
 var stopwatch = new Stopwatch();
 document.body.appendChild(stopwatch.elem);
-console.log(stopwatch.elem.children[0]);
+console.log(stopwatch.time());
 },{}]},{},["stopwatch.js"], null)
 //# sourceMappingURL=/stopwatch.9d477285.map

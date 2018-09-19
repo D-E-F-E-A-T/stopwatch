@@ -1,0 +1,27 @@
+{
+  "name": "stopwatch-git",
+  "version": "1.0.0",
+  "description": "",
+  "main": "stopwatch.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tobiasz18/stopwatch.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tobiasz18/stopwatch/issues"
+  },
+  "homepage": "https://github.com/tobiasz18/stopwatch#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-es2015": "^6.24.1"
+  },
+  "dependencies": {
+    "babel-preset-stage-3": "^6.24.1"
+  }
+}

@@ -134,7 +134,7 @@ var Stopwatch = function () {
         value: function counter() {
             var span = document.createElement('span');
             this.elem.appendChild(span);
-            this.elem.childNodes[5].innerHTML = '<br>\n            ' + this.times.minutes + ':' + this.times.seconds + ':' + this.times.miliseconds;
+            this.elem.childNodes[5].innerHTML = '<br>\n            ' + this.addZero(this.times.minutes) + ':' + this.addZero(this.times.seconds) + ':' + this.addZero(this.times.miliseconds);
         }
     }, {
         key: 'time',
@@ -154,6 +154,15 @@ var Stopwatch = function () {
             this.elem.childNodes[0].onclick = function () {
                 _this2.start();
             };
+        }
+    }, {
+        key: 'addZero',
+        value: function addZero(value) {
+            var result = value.toString();
+            if (result.length < 2) {
+                result = '0' + result;
+            }
+            return result;
         }
     }, {
         key: 'createButtons',

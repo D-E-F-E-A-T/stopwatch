@@ -5,7 +5,6 @@ class Stopwatch {
         this.createButtons();
         this.handleButtons();
         this.counter();
-
     }
 
     start() {
@@ -19,7 +18,7 @@ class Stopwatch {
         const span = document.createElement('span');
         this.elem.appendChild(span);
         this.elem.childNodes[5].innerHTML = `<br>
-            ${this.times.minutes}:${this.times.seconds}:${this.times.miliseconds}`
+            ${this.addZero(this.times.minutes)}:${this.addZero(this.times.seconds)}:${this.addZero(this.times.miliseconds)}`
     }
 
     time() {
@@ -35,6 +34,15 @@ class Stopwatch {
         this.elem.childNodes[0].onclick = () => {
             this.start();
         }
+    }
+
+    addZero(value) {
+        let result = value.toString();
+        if (result.length < 2) {
+            result = '0' + result
+
+        }
+        return result
     }
 
     createButtons() { //we will refer to elements by nodes e.g this.elem.children[0] //this.elem.childNodes[length]
@@ -58,7 +66,6 @@ class Stopwatch {
         this.elem.appendChild(buttonLop);
         this.elem.appendChild(buttonClear);
         this.elem.appendChild(buttonClearLop);
-
     }
 
     display() {

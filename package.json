@@ -5,7 +5,7 @@
   "main": "stopwatch.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel index.html",
+    "start": "parcel index.html --no-hmr",
     "build": "parcel index.html --no-hmr"
   },
   "repository": {

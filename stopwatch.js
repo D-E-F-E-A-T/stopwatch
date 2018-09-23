@@ -1,15 +1,25 @@
 class Stopwatch {
     constructor() {
         this.elem = this.display();
+        this.times = this.time();
         this.createButtons();
+        this.handleButtons();
         this.counter();
+
+    }
+
+    start() {
+        setInterval(() => {
+            this.times.miliseconds++
+            this.counter();
+        }, 100)
     }
 
     counter() {
-        this.elem.innerHTML += `<br>
-            <span>
-                ${this.time().minutes}:${this.time().seconds}:${this.time().miliseconds}
-            </span>`
+        const span = document.createElement('span');
+        this.elem.appendChild(span);
+        this.elem.childNodes[5].innerHTML = `<br>
+            ${this.times.minutes}:${this.times.seconds}:${this.times.miliseconds}`
     }
 
     time() {
@@ -21,7 +31,13 @@ class Stopwatch {
         return time
     }
 
-    createButtons() { //we will refer to elements by nodes e.g this.elem.children[0]
+    handleButtons() {
+        this.elem.childNodes[0].onclick = () => {
+            this.start();
+        }
+    }
+
+    createButtons() { //we will refer to elements by nodes e.g this.elem.children[0] //this.elem.childNodes[length]
         const buttonStart = document.createElement('button');
         const buttonStop = document.createElement('button');
         const buttonLop = document.createElement('button');
@@ -42,6 +58,7 @@ class Stopwatch {
         this.elem.appendChild(buttonLop);
         this.elem.appendChild(buttonClear);
         this.elem.appendChild(buttonClearLop);
+
     }
 
     display() {

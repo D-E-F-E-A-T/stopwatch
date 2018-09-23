@@ -113,14 +113,28 @@ var Stopwatch = function () {
         _classCallCheck(this, Stopwatch);
 
         this.elem = this.display();
+        this.times = this.time();
         this.createButtons();
+        this.handleButtons();
         this.counter();
     }
 
     _createClass(Stopwatch, [{
+        key: 'start',
+        value: function start() {
+            var _this = this;
+
+            setInterval(function () {
+                _this.times.miliseconds++;
+                _this.counter();
+            }, 100);
+        }
+    }, {
         key: 'counter',
         value: function counter() {
-            this.elem.innerHTML += '<br>\n            <span>\n                ' + this.time().minutes + ':' + this.time().seconds + ':' + this.time().miliseconds + '\n            </span>';
+            var span = document.createElement('span');
+            this.elem.appendChild(span);
+            this.elem.childNodes[5].innerHTML = '<br>\n            ' + this.times.minutes + ':' + this.times.seconds + ':' + this.times.miliseconds;
         }
     }, {
         key: 'time',
@@ -133,9 +147,18 @@ var Stopwatch = function () {
             return time;
         }
     }, {
+        key: 'handleButtons',
+        value: function handleButtons() {
+            var _this2 = this;
+
+            this.elem.childNodes[0].onclick = function () {
+                _this2.start();
+            };
+        }
+    }, {
         key: 'createButtons',
         value: function createButtons() {
-            //we will refer to elements by nodes e.g this.elem.children[0]
+            //we will refer to elements by nodes e.g this.elem.children[0] //this.elem.childNodes[length]
             var buttonStart = document.createElement('button');
             var buttonStop = document.createElement('button');
             var buttonLop = document.createElement('button');

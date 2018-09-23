@@ -11,7 +11,7 @@ class Stopwatch {
         setInterval(() => {
             this.times.miliseconds++
             this.counter();
-        }, 100)
+        }, 100) //value only for trials
     }
 
     counter() {

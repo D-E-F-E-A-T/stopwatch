@@ -1,6 +1,6 @@
 class Stopwatch {
     constructor() {
-        this.elem = this.display();
+        this.elem = this.display(); //main parent (container)
         this.times = this.time();
         this.createElements();
         this.handleElements();
@@ -74,7 +74,7 @@ class Stopwatch {
         this.elem.childNodes[4].onclick = () => {
             this.clearAll();
         }
-        //NodeList = console.log(this.elem.childNodes) 
+        //NodeList = console.log(this.elem.childNodes)
     }
 
     addZero(value) {

@@ -114,8 +114,8 @@ var Stopwatch = function () {
 
         this.elem = this.display();
         this.times = this.time();
-        this.createButtons();
-        this.handleButtons();
+        this.createElements();
+        this.handleElements();
         this.counter();
     }
 
@@ -136,11 +136,37 @@ var Stopwatch = function () {
             clearInterval(this.myTimer);
         }
     }, {
+        key: 'lop',
+        value: function lop() {
+            var li = document.createElement('li');
+            this.elem.childNodes[6].appendChild(li);
+            li.innerHTML = this.show;
+        }
+    }, {
+        key: 'clearLop',
+        value: function clearLop() {
+            var li_Elem = this.elem.childNodes[6].children.length;
+            if (li_Elem != 0) {
+                var i = li_Elem;
+                while (i) {
+                    i--;
+                    this.elem.childNodes[6].children[i].remove();
+                }
+            }
+        }
+    }, {
+        key: 'clearAll',
+        value: function clearAll() {
+            this.times.minutes = 0;
+            this.times.seconds = 0;
+            this.times.miliseconds = 0;
+            clearInterval(this.myTimer);
+            this.counter();
+        }
+    }, {
         key: 'counter',
         value: function counter() {
-            var span = document.createElement('span');
-            this.elem.appendChild(span);
-            this.elem.childNodes[5].innerHTML = '<br>\n            ' + this.addZero(this.times.minutes) + ':' + this.addZero(this.times.seconds) + ':' + this.addZero(this.times.miliseconds);
+            this.show = this.elem.childNodes[5].innerHTML = '<br>\n            ' + this.addZero(this.times.minutes) + ':' + this.addZero(this.times.seconds) + ':' + this.addZero(this.times.miliseconds);
         }
     }, {
         key: 'time',
@@ -153,8 +179,8 @@ var Stopwatch = function () {
             return time;
         }
     }, {
-        key: 'handleButtons',
-        value: function handleButtons() {
+        key: 'handleElements',
+        value: function handleElements() {
             var _this2 = this;
 
             this.elem.childNodes[0].onclick = function () {
@@ -163,6 +189,16 @@ var Stopwatch = function () {
             this.elem.childNodes[1].onclick = function () {
                 _this2.stop();
             };
+            this.elem.childNodes[2].onclick = function () {
+                _this2.lop();
+            };
+            this.elem.childNodes[3].onclick = function () {
+                _this2.clearLop();
+            };
+            this.elem.childNodes[4].onclick = function () {
+                _this2.clearAll();
+            };
+            //NodeList = console.log(this.elem.childNodes) 
         }
     }, {
         key: 'addZero',
@@ -185,14 +221,16 @@ var Stopwatch = function () {
             }
         }
     }, {
-        key: 'createButtons',
-        value: function createButtons() {
+        key: 'createElements',
+        value: function createElements() {
             //we will refer to elements by nodes e.g this.elem.children[0] //this.elem.childNodes[length]
             var buttonStart = document.createElement('button');
             var buttonStop = document.createElement('button');
             var buttonLop = document.createElement('button');
             var buttonClear = document.createElement('button');
             var buttonClearLop = document.createElement('button');
+            var span = document.createElement('span');
+            var ul = document.createElement('ul');
             buttonStart.textContent = 'Start';
             buttonStop.textContent = 'stop';
             buttonLop.textContent = 'Lop';
@@ -206,8 +244,10 @@ var Stopwatch = function () {
             this.elem.appendChild(buttonStart);
             this.elem.appendChild(buttonStop);
             this.elem.appendChild(buttonLop);
-            this.elem.appendChild(buttonClear);
             this.elem.appendChild(buttonClearLop);
+            this.elem.appendChild(buttonClear);
+            this.elem.appendChild(span);
+            this.elem.appendChild(ul);
         }
     }, {
         key: 'display',

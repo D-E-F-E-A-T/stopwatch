@@ -2,8 +2,8 @@ class Stopwatch {
     constructor() {
         this.elem = this.display();
         this.times = this.time();
-        this.createButtons();
-        this.handleButtons();
+        this.createElements();
+        this.handleElements();
         this.counter();
     }
 
@@ -19,10 +19,33 @@ class Stopwatch {
         clearInterval(this.myTimer);
     }
 
+    lop() {
+        const li = document.createElement('li');
+        this.elem.childNodes[6].appendChild(li);
+        li.innerHTML = this.show;
+    }
+
+    clearLop() {
+        const li_Elem = this.elem.childNodes[6].children.length
+        if (li_Elem != 0 ) {
+            let i = li_Elem
+            while(i) {
+                i--
+                this.elem.childNodes[6].children[i].remove();
+            }
+        }
+    }
+
+    clearAll() {
+        this.times.minutes = 0;
+        this.times.seconds = 0;
+        this.times.miliseconds = 0;
+        clearInterval(this.myTimer);
+        this.counter();
+    }
+
     counter() {
-        const span = document.createElement('span');
-        this.elem.appendChild(span);
-        this.elem.childNodes[5].innerHTML = `<br>
+        this.show = this.elem.childNodes[5].innerHTML = `<br>
             ${this.addZero(this.times.minutes)}:${this.addZero(this.times.seconds)}:${this.addZero(this.times.miliseconds)}`
     }
 
@@ -35,13 +58,23 @@ class Stopwatch {
         return time
     }
 
-    handleButtons() {
+    handleElements() {
         this.elem.childNodes[0].onclick = () => {
             this.start();
         }
         this.elem.childNodes[1].onclick = () => {
             this.stop();
         }
+        this.elem.childNodes[2].onclick = () => {
+            this.lop();
+        }
+        this.elem.childNodes[3].onclick = () => {
+            this.clearLop();
+        }
+        this.elem.childNodes[4].onclick = () => {
+            this.clearAll();
+        }
+        //NodeList = console.log(this.elem.childNodes) 
     }
 
     addZero(value) {
@@ -63,12 +96,14 @@ class Stopwatch {
         }
     }
 
-    createButtons() { //we will refer to elements by nodes e.g this.elem.children[0] //this.elem.childNodes[length]
+    createElements() { //we will refer to elements by nodes e.g this.elem.children[0] //this.elem.childNodes[length]
         const buttonStart = document.createElement('button');
         const buttonStop = document.createElement('button');
         const buttonLop = document.createElement('button');
         const buttonClear = document.createElement('button');
         const buttonClearLop = document.createElement('button');
+        const span = document.createElement('span');
+        const ul = document.createElement('ul');
         buttonStart.textContent = 'Start';
         buttonStop.textContent = 'stop';
         buttonLop.textContent = 'Lop';
@@ -82,8 +117,10 @@ class Stopwatch {
         this.elem.appendChild(buttonStart);
         this.elem.appendChild(buttonStop);
         this.elem.appendChild(buttonLop);
-        this.elem.appendChild(buttonClear);
         this.elem.appendChild(buttonClearLop);
+        this.elem.appendChild(buttonClear);
+        this.elem.appendChild(span);
+        this.elem.appendChild(ul);
     }
 
     display() {

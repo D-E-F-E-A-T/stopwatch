@@ -8,11 +8,15 @@ class Stopwatch {
     }
 
     start() {
-        setInterval(() => {
+        this.myTimer = setInterval(() => {
             this.times.miliseconds++
             this.calculate();
             this.counter();
         }, 10)
+    }
+
+    stop() {
+        clearInterval(this.myTimer);
     }
 
     counter() {
@@ -34,6 +38,9 @@ class Stopwatch {
     handleButtons() {
         this.elem.childNodes[0].onclick = () => {
             this.start();
+        }
+        this.elem.childNodes[1].onclick = () => {
+            this.stop();
         }
     }
 
@@ -87,7 +94,5 @@ class Stopwatch {
     }
 }
 
-
 const stopwatch = new Stopwatch();
 document.body.appendChild(stopwatch.elem);
-console.log(stopwatch.time())

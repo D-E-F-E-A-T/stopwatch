@@ -124,11 +124,16 @@ var Stopwatch = function () {
         value: function start() {
             var _this = this;
 
-            setInterval(function () {
+            this.myTimer = setInterval(function () {
                 _this.times.miliseconds++;
                 _this.calculate();
                 _this.counter();
             }, 10);
+        }
+    }, {
+        key: 'stop',
+        value: function stop() {
+            clearInterval(this.myTimer);
         }
     }, {
         key: 'counter',
@@ -154,6 +159,9 @@ var Stopwatch = function () {
 
             this.elem.childNodes[0].onclick = function () {
                 _this2.start();
+            };
+            this.elem.childNodes[1].onclick = function () {
+                _this2.stop();
             };
         }
     }, {
@@ -216,6 +224,5 @@ var Stopwatch = function () {
 
 var stopwatch = new Stopwatch();
 document.body.appendChild(stopwatch.elem);
-console.log(stopwatch.time());
 },{}]},{},["stopwatch.js"], null)
 //# sourceMappingURL=/stopwatch.9d477285.map

@@ -126,8 +126,9 @@ var Stopwatch = function () {
 
             setInterval(function () {
                 _this.times.miliseconds++;
+                _this.calculate();
                 _this.counter();
-            }, 100);
+            }, 10);
         }
     }, {
         key: 'counter',
@@ -163,6 +164,17 @@ var Stopwatch = function () {
                 result = '0' + result;
             }
             return result;
+        }
+    }, {
+        key: 'calculate',
+        value: function calculate() {
+            if (this.times.miliseconds >= 100) {
+                this.times.seconds++;
+                this.times.miliseconds = 0;
+            } else if (this.times.seconds >= 60) {
+                this.times.minutes++;
+                this.times.seconds = 0;
+            }
         }
     }, {
         key: 'createButtons',

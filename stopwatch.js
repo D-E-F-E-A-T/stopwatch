@@ -10,8 +10,9 @@ class Stopwatch {
     start() {
         setInterval(() => {
             this.times.miliseconds++
+            this.calculate();
             this.counter();
-        }, 100) //value 100ms is only for trials 
+        }, 10)
     }
 
     counter() {
@@ -43,6 +44,16 @@ class Stopwatch {
 
         }
         return result
+    }
+
+    calculate() {
+        if(this.times.miliseconds >= 100) {
+            this.times.seconds++
+            this.times.miliseconds = 0
+        } else if(this.times.seconds >= 60) {
+            this.times.minutes++
+            this.times.seconds = 0
+        }
     }
 
     createButtons() { //we will refer to elements by nodes e.g this.elem.children[0] //this.elem.childNodes[length]

@@ -112,7 +112,7 @@ var Stopwatch = function () {
     function Stopwatch() {
         _classCallCheck(this, Stopwatch);
 
-        this.elem = this.display();
+        this.elem = this.display(); //main parent (container)
         this.times = this.time();
         this.createElements();
         this.handleElements();
@@ -138,9 +138,11 @@ var Stopwatch = function () {
     }, {
         key: 'lop',
         value: function lop() {
-            var li = document.createElement('li');
-            this.elem.childNodes[6].appendChild(li);
-            li.innerHTML = this.show;
+            if (this.times.miliseconds != 0) {
+                var li = document.createElement('li');
+                this.elem.childNodes[6].appendChild(li);
+                li.innerHTML = this.show;
+            }
         }
     }, {
         key: 'clearLop',
@@ -162,6 +164,7 @@ var Stopwatch = function () {
             this.times.miliseconds = 0;
             clearInterval(this.myTimer);
             this.counter();
+            this.clearLop();
         }
     }, {
         key: 'counter',
@@ -198,7 +201,7 @@ var Stopwatch = function () {
             this.elem.childNodes[4].onclick = function () {
                 _this2.clearAll();
             };
-            //NodeList = console.log(this.elem.childNodes) 
+            //NodeList = console.log(this.elem.childNodes)
         }
     }, {
         key: 'addZero',

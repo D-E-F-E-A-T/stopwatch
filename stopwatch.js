@@ -20,9 +20,11 @@ class Stopwatch {
     }
 
     lop() {
-        const li = document.createElement('li');
-        this.elem.childNodes[6].appendChild(li);
-        li.innerHTML = this.show;
+        if(this.times.miliseconds != 0) {
+            const li = document.createElement('li');
+            this.elem.childNodes[6].appendChild(li);
+            li.innerHTML = this.show;
+        }
     }
 
     clearLop() {
@@ -42,6 +44,7 @@ class Stopwatch {
         this.times.miliseconds = 0;
         clearInterval(this.myTimer);
         this.counter();
+        this.clearLop();
     }
 
     counter() {

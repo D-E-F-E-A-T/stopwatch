@@ -114,6 +114,7 @@ var Stopwatch = function () {
 
         this.elem = this.display(); //main parent (container)
         this.times = this.time();
+        this.flag = false; //to prevent duble click
         this.createElements();
         this.handleElements();
         this.counter();
@@ -124,16 +125,19 @@ var Stopwatch = function () {
         value: function start() {
             var _this = this;
 
-            // add flags problem with multiple clicks 
-            this.myTimer = setInterval(function () {
-                _this.times.miliseconds++;
-                _this.calculate();
-                _this.counter();
-            }, 10);
+            if (!this.flag) {
+                this.myTimer = setInterval(function () {
+                    _this.times.miliseconds++;
+                    _this.calculate();
+                    _this.counter();
+                    _this.flag = true;
+                }, 10);
+            }
         }
     }, {
         key: 'stop',
         value: function stop() {
+            this.flag = false;
             clearInterval(this.myTimer);
         }
     }, {
@@ -306,7 +310,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '62572' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '64267' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

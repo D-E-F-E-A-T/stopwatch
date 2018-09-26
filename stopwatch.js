@@ -2,20 +2,25 @@ class Stopwatch {
     constructor() {
         this.elem = this.display(); //main parent (container)
         this.times = this.time();
+        this.flag = false; //to prevent duble click
         this.createElements();
         this.handleElements();
         this.counter();
     }
 
-    start() { // add flags problem with multiple clicks 
-        this.myTimer = setInterval(() => {
-            this.times.miliseconds++
-            this.calculate();
-            this.counter();
-        }, 10)
+    start() {
+        if(!this.flag){
+            this.myTimer = setInterval(() => {
+                this.times.miliseconds++
+                this.calculate();
+                this.counter();
+                this.flag = true;
+            }, 10)
+        }
     }
 
     stop() {
+        this.flag = false;
         clearInterval(this.myTimer);
     }
 

@@ -1,11 +1,12 @@
-
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
 .container_class {
     text-align: center;
     background: -webkit-linear-gradient(left, #bfe8f9 4%,#e4f5fc 50%,#bfe8f9 97%);
     padding: 20px;
-    min-height: 400px;
+    min-height: 350px;
+    max-width: 600px;
+    margin: auto;
 }
 
 .timer {
@@ -32,9 +33,11 @@
     border-color: #00000026;
     letter-spacing: 1px;
 }
+
 .btn:hover {
     background: #bfe8f9;
 }
+
 .btn:active {
     background: -webkit-linear-gradient(left, #a7d1e2 2%, #e4f5fc 196%,#bfe8f9 2%);
 
@@ -45,10 +48,13 @@ ul {
     overflow: auto;
     height: 15vh;
     padding: 5px;
+    max-width: 400px;
+    padding-top: 20px;
+    margin-top: 10px;
 }
 
 ul li {
-    border: 1px solid #a6d9fd;
+    border-bottom: 1px solid #a6d9fd;
     padding: 5px;
     text-align: left;
     list-style: none;

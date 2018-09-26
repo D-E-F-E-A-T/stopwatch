@@ -1,0 +1,57 @@
+
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+.container_class {
+    text-align: center;
+    background: -webkit-linear-gradient(left, #bfe8f9 4%,#e4f5fc 50%,#bfe8f9 97%);
+    padding: 20px;
+    min-height: 400px;
+}
+
+.timer {
+    display: block;
+    font-size: 5em;
+    font-family: 'Lato', sans-serif;
+    margin-bottom: 20px;
+}
+
+.btn {
+    margin: 5px;
+    background: -webkit-linear-gradient(left, #bfe8f9 2%, #e4f5fc 196%,#bfe8f9 2%);
+    border: 1px solid;
+    color: #125286;
+    border-radius: 5px;
+    padding: 7px 20px;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    box-shadow: none;
+    cursor: pointer;
+    outline: inherit;
+    box-shadow: none;
+    text-decoration: none;
+    border-color: #00000026;
+    letter-spacing: 1px;
+}
+.btn:hover {
+    background: #bfe8f9;
+}
+.btn:active {
+    background: -webkit-linear-gradient(left, #a7d1e2 2%, #e4f5fc 196%,#bfe8f9 2%);
+
+}
+ul {
+    width: 40vw;
+    margin: auto;
+    overflow: auto;
+    height: 15vh;
+    padding: 5px;
+}
+
+ul li {
+    border: 1px solid #a6d9fd;
+    padding: 5px;
+    text-align: left;
+    list-style: none;
+    font-family: 'Lato', sans-serif;
+    color: #0c5392;
+}

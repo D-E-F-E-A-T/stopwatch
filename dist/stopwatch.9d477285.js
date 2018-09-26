@@ -124,6 +124,7 @@ var Stopwatch = function () {
         value: function start() {
             var _this = this;
 
+            // add flags problem with multiple clicks 
             this.myTimer = setInterval(function () {
                 _this.times.miliseconds++;
                 _this.calculate();
@@ -138,10 +139,12 @@ var Stopwatch = function () {
     }, {
         key: 'lop',
         value: function lop() {
+            var i = 1;
             if (this.times.miliseconds != 0) {
                 var li = document.createElement('li');
                 this.elem.childNodes[6].appendChild(li);
-                li.innerHTML = this.show;
+                li.innerHTML = this.elem.childNodes[6].childElementCount + '.' + this.show;
+                console.log(this.elem.childNodes);
             }
         }
     }, {
@@ -169,7 +172,7 @@ var Stopwatch = function () {
     }, {
         key: 'counter',
         value: function counter() {
-            this.show = this.elem.childNodes[0].innerHTML = '<br>\n            ' + this.addZero(this.times.minutes) + ':' + this.addZero(this.times.seconds) + ':' + this.addZero(this.times.miliseconds);
+            this.show = this.elem.childNodes[0].innerHTML = '\n            ' + this.addZero(this.times.minutes) + ':' + this.addZero(this.times.seconds) + ':' + this.addZero(this.times.miliseconds);
         }
     }, {
         key: 'time',
@@ -235,7 +238,7 @@ var Stopwatch = function () {
             var span = document.createElement('span');
             var ul = document.createElement('ul');
             buttonStart.textContent = 'Start';
-            buttonStop.textContent = 'stop';
+            buttonStop.textContent = 'Stop';
             buttonLop.textContent = 'Lop';
             buttonClear.textContent = 'Clear All';
             buttonClearLop.textContent = 'Clear Lop';
@@ -244,6 +247,12 @@ var Stopwatch = function () {
             buttonLop.setAttribute('id', 'btn_lop');
             buttonClear.setAttribute('id', 'btn_clear');
             buttonClearLop.setAttribute('id', 'btn_clearLop');
+            buttonStart.setAttribute('class', 'btn start');
+            buttonStop.setAttribute('class', 'btn stop');
+            buttonLop.setAttribute('class', 'btn lop');
+            buttonClear.setAttribute('class', 'btn clear');
+            buttonClearLop.setAttribute('class', 'btn clearLop');
+            span.setAttribute('class', 'timer');
             this.elem.appendChild(span);
             this.elem.appendChild(buttonStart);
             this.elem.appendChild(buttonStop);
@@ -257,6 +266,7 @@ var Stopwatch = function () {
         value: function display() {
             var container = document.createElement('div');
             container.setAttribute('id', 'container_id');
+            container.setAttribute('class', 'container_class');
 
             return container;
         }
@@ -294,9 +304,9 @@ module.bundle.Module = Module;
 
 var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
-  var hostname = '' || location.hostname;
+  var hostname = undefined || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '63099' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '49222' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

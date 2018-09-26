@@ -7,7 +7,7 @@ class Stopwatch {
         this.counter();
     }
 
-    start() {
+    start() { // add flags problem with multiple clicks 
         this.myTimer = setInterval(() => {
             this.times.miliseconds++
             this.calculate();
@@ -20,10 +20,12 @@ class Stopwatch {
     }
 
     lop() {
+        var i = 1;
         if(this.times.miliseconds != 0) {
             const li = document.createElement('li');
             this.elem.childNodes[6].appendChild(li);
-            li.innerHTML = this.show;
+            li.innerHTML = `${this.elem.childNodes[6].childElementCount}.${this.show}`;
+            console.log(this.elem.childNodes)
         }
     }
 
@@ -48,7 +50,7 @@ class Stopwatch {
     }
 
     counter() {
-        this.show = this.elem.childNodes[0].innerHTML = `<br>
+        this.show = this.elem.childNodes[0].innerHTML = `
             ${this.addZero(this.times.minutes)}:${this.addZero(this.times.seconds)}:${this.addZero(this.times.miliseconds)}`
     }
 
@@ -108,7 +110,7 @@ class Stopwatch {
         const span = document.createElement('span');
         const ul = document.createElement('ul');
         buttonStart.textContent = 'Start';
-        buttonStop.textContent = 'stop';
+        buttonStop.textContent = 'Stop';
         buttonLop.textContent = 'Lop';
         buttonClear.textContent = 'Clear All';
         buttonClearLop.textContent = 'Clear Lop';
@@ -117,6 +119,12 @@ class Stopwatch {
         buttonLop.setAttribute('id', 'btn_lop');
         buttonClear.setAttribute('id', 'btn_clear');
         buttonClearLop.setAttribute('id', 'btn_clearLop');
+        buttonStart.setAttribute('class', 'btn start');
+        buttonStop.setAttribute('class', 'btn stop');
+        buttonLop.setAttribute('class', 'btn lop');
+        buttonClear.setAttribute('class', 'btn clear');
+        buttonClearLop.setAttribute('class', 'btn clearLop');
+        span.setAttribute('class', 'timer');
         this.elem.appendChild(span);
         this.elem.appendChild(buttonStart);
         this.elem.appendChild(buttonStop);
@@ -129,6 +137,7 @@ class Stopwatch {
     display() {
         const container = document.createElement('div');
         container.setAttribute('id', 'container_id');
+        container.setAttribute('class', 'container_class');
 
         return container
     }

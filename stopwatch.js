@@ -42,13 +42,13 @@ class Stopwatch {
         this.times.minutes = 0;
         this.times.seconds = 0;
         this.times.miliseconds = 0;
-        clearInterval(this.myTimer);
         this.counter();
         this.clearLop();
+        clearInterval(this.myTimer);
     }
 
     counter() {
-        this.show = this.elem.childNodes[5].innerHTML = `<br>
+        this.show = this.elem.childNodes[0].innerHTML = `<br>
             ${this.addZero(this.times.minutes)}:${this.addZero(this.times.seconds)}:${this.addZero(this.times.miliseconds)}`
     }
 
@@ -62,19 +62,19 @@ class Stopwatch {
     }
 
     handleElements() {
-        this.elem.childNodes[0].onclick = () => {
+        this.elem.childNodes[1].onclick = () => {
             this.start();
         }
-        this.elem.childNodes[1].onclick = () => {
+        this.elem.childNodes[2].onclick = () => {
             this.stop();
         }
-        this.elem.childNodes[2].onclick = () => {
+        this.elem.childNodes[3].onclick = () => {
             this.lop();
         }
-        this.elem.childNodes[3].onclick = () => {
+        this.elem.childNodes[4].onclick = () => {
             this.clearLop();
         }
-        this.elem.childNodes[4].onclick = () => {
+        this.elem.childNodes[5].onclick = () => {
             this.clearAll();
         }
         //NodeList = console.log(this.elem.childNodes)
@@ -117,12 +117,12 @@ class Stopwatch {
         buttonLop.setAttribute('id', 'btn_lop');
         buttonClear.setAttribute('id', 'btn_clear');
         buttonClearLop.setAttribute('id', 'btn_clearLop');
+        this.elem.appendChild(span);
         this.elem.appendChild(buttonStart);
         this.elem.appendChild(buttonStop);
         this.elem.appendChild(buttonLop);
         this.elem.appendChild(buttonClearLop);
         this.elem.appendChild(buttonClear);
-        this.elem.appendChild(span);
         this.elem.appendChild(ul);
     }
 

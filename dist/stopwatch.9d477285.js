@@ -162,14 +162,14 @@ var Stopwatch = function () {
             this.times.minutes = 0;
             this.times.seconds = 0;
             this.times.miliseconds = 0;
-            clearInterval(this.myTimer);
             this.counter();
             this.clearLop();
+            clearInterval(this.myTimer);
         }
     }, {
         key: 'counter',
         value: function counter() {
-            this.show = this.elem.childNodes[5].innerHTML = '<br>\n            ' + this.addZero(this.times.minutes) + ':' + this.addZero(this.times.seconds) + ':' + this.addZero(this.times.miliseconds);
+            this.show = this.elem.childNodes[0].innerHTML = '<br>\n            ' + this.addZero(this.times.minutes) + ':' + this.addZero(this.times.seconds) + ':' + this.addZero(this.times.miliseconds);
         }
     }, {
         key: 'time',
@@ -186,19 +186,19 @@ var Stopwatch = function () {
         value: function handleElements() {
             var _this2 = this;
 
-            this.elem.childNodes[0].onclick = function () {
+            this.elem.childNodes[1].onclick = function () {
                 _this2.start();
             };
-            this.elem.childNodes[1].onclick = function () {
+            this.elem.childNodes[2].onclick = function () {
                 _this2.stop();
             };
-            this.elem.childNodes[2].onclick = function () {
+            this.elem.childNodes[3].onclick = function () {
                 _this2.lop();
             };
-            this.elem.childNodes[3].onclick = function () {
+            this.elem.childNodes[4].onclick = function () {
                 _this2.clearLop();
             };
-            this.elem.childNodes[4].onclick = function () {
+            this.elem.childNodes[5].onclick = function () {
                 _this2.clearAll();
             };
             //NodeList = console.log(this.elem.childNodes)
@@ -244,12 +244,12 @@ var Stopwatch = function () {
             buttonLop.setAttribute('id', 'btn_lop');
             buttonClear.setAttribute('id', 'btn_clear');
             buttonClearLop.setAttribute('id', 'btn_clearLop');
+            this.elem.appendChild(span);
             this.elem.appendChild(buttonStart);
             this.elem.appendChild(buttonStop);
             this.elem.appendChild(buttonLop);
             this.elem.appendChild(buttonClearLop);
             this.elem.appendChild(buttonClear);
-            this.elem.appendChild(span);
             this.elem.appendChild(ul);
         }
     }, {
@@ -296,7 +296,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '61934' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '63099' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -438,3 +438,4 @@ function hmrAccept(bundle, id) {
   });
 }
 },{}]},{},["..\\..\\AppData\\Roaming\\npm\\node_modules\\parcel-bundler\\src\\builtins\\hmr-runtime.js","stopwatch.js"], null)
+//# sourceMappingURL=/stopwatch.9d477285.map

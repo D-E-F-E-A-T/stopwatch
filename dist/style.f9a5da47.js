@@ -103,171 +103,73 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({"stopwatch.js":[function(require,module,exports) {
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+})({"..\\..\\AppData\\Roaming\\npm\\node_modules\\parcel-bundler\\src\\builtins\\bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+  return bundleURL;
+}
 
-var Stopwatch = function () {
-    function Stopwatch() {
-        _classCallCheck(this, Stopwatch);
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp):\/\/[^)\n]+/g);
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
 
-        this.elem = this.display(); //main parent (container)
-        this.times = this.time();
-        this.createElements();
-        this.handleElements();
-        this.counter();
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"..\\..\\AppData\\Roaming\\npm\\node_modules\\parcel-bundler\\src\\builtins\\css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+  newLink.onload = function () {
+    link.remove();
+  };
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
     }
 
-    _createClass(Stopwatch, [{
-        key: 'start',
-        value: function start() {
-            var _this = this;
+    cssTimeout = null;
+  }, 50);
+}
 
-            this.myTimer = setInterval(function () {
-                _this.times.miliseconds++;
-                _this.calculate();
-                _this.counter();
-            }, 10);
-        }
-    }, {
-        key: 'stop',
-        value: function stop() {
-            clearInterval(this.myTimer);
-        }
-    }, {
-        key: 'lop',
-        value: function lop() {
-            if (this.times.miliseconds != 0) {
-                var li = document.createElement('li');
-                this.elem.childNodes[6].appendChild(li);
-                li.innerHTML = this.show;
-            }
-        }
-    }, {
-        key: 'clearLop',
-        value: function clearLop() {
-            var li_Elem = this.elem.childNodes[6].children.length;
-            if (li_Elem != 0) {
-                var i = li_Elem;
-                while (i) {
-                    i--;
-                    this.elem.childNodes[6].children[i].remove();
-                }
-            }
-        }
-    }, {
-        key: 'clearAll',
-        value: function clearAll() {
-            this.times.minutes = 0;
-            this.times.seconds = 0;
-            this.times.miliseconds = 0;
-            clearInterval(this.myTimer);
-            this.counter();
-            this.clearLop();
-        }
-    }, {
-        key: 'counter',
-        value: function counter() {
-            this.show = this.elem.childNodes[5].innerHTML = '<br>\n            ' + this.addZero(this.times.minutes) + ':' + this.addZero(this.times.seconds) + ':' + this.addZero(this.times.miliseconds);
-        }
-    }, {
-        key: 'time',
-        value: function time() {
-            var time = {
-                miliseconds: 0,
-                seconds: 0,
-                minutes: 0
-            };
-            return time;
-        }
-    }, {
-        key: 'handleElements',
-        value: function handleElements() {
-            var _this2 = this;
+module.exports = reloadCSS;
+},{"./bundle-url":"..\\..\\AppData\\Roaming\\npm\\node_modules\\parcel-bundler\\src\\builtins\\bundle-url.js"}],"style.css":[function(require,module,exports) {
 
-            this.elem.childNodes[0].onclick = function () {
-                _this2.start();
-            };
-            this.elem.childNodes[1].onclick = function () {
-                _this2.stop();
-            };
-            this.elem.childNodes[2].onclick = function () {
-                _this2.lop();
-            };
-            this.elem.childNodes[3].onclick = function () {
-                _this2.clearLop();
-            };
-            this.elem.childNodes[4].onclick = function () {
-                _this2.clearAll();
-            };
-            //NodeList = console.log(this.elem.childNodes)
-        }
-    }, {
-        key: 'addZero',
-        value: function addZero(value) {
-            var result = value.toString();
-            if (result.length < 2) {
-                result = '0' + result;
-            }
-            return result;
-        }
-    }, {
-        key: 'calculate',
-        value: function calculate() {
-            if (this.times.miliseconds >= 100) {
-                this.times.seconds++;
-                this.times.miliseconds = 0;
-            } else if (this.times.seconds >= 60) {
-                this.times.minutes++;
-                this.times.seconds = 0;
-            }
-        }
-    }, {
-        key: 'createElements',
-        value: function createElements() {
-            //we will refer to elements by nodes e.g this.elem.children[0] //this.elem.childNodes[length]
-            var buttonStart = document.createElement('button');
-            var buttonStop = document.createElement('button');
-            var buttonLop = document.createElement('button');
-            var buttonClear = document.createElement('button');
-            var buttonClearLop = document.createElement('button');
-            var span = document.createElement('span');
-            var ul = document.createElement('ul');
-            buttonStart.textContent = 'Start';
-            buttonStop.textContent = 'stop';
-            buttonLop.textContent = 'Lop';
-            buttonClear.textContent = 'Clear All';
-            buttonClearLop.textContent = 'Clear Lop';
-            buttonStart.setAttribute('id', 'btn_start');
-            buttonStop.setAttribute('id', 'btn_stop');
-            buttonLop.setAttribute('id', 'btn_lop');
-            buttonClear.setAttribute('id', 'btn_clear');
-            buttonClearLop.setAttribute('id', 'btn_clearLop');
-            this.elem.appendChild(buttonStart);
-            this.elem.appendChild(buttonStop);
-            this.elem.appendChild(buttonLop);
-            this.elem.appendChild(buttonClearLop);
-            this.elem.appendChild(buttonClear);
-            this.elem.appendChild(span);
-            this.elem.appendChild(ul);
-        }
-    }, {
-        key: 'display',
-        value: function display() {
-            var container = document.createElement('div');
-            container.setAttribute('id', 'container_id');
-
-            return container;
-        }
-    }]);
-
-    return Stopwatch;
-}();
-
-var stopwatch = new Stopwatch();
-document.body.appendChild(stopwatch.elem);
-},{}],"..\\..\\AppData\\Roaming\\npm\\node_modules\\parcel-bundler\\src\\builtins\\hmr-runtime.js":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"..\\..\\AppData\\Roaming\\npm\\node_modules\\parcel-bundler\\src\\builtins\\css-loader.js"}],"..\\..\\AppData\\Roaming\\npm\\node_modules\\parcel-bundler\\src\\builtins\\hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -437,4 +339,4 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},["..\\..\\AppData\\Roaming\\npm\\node_modules\\parcel-bundler\\src\\builtins\\hmr-runtime.js","stopwatch.js"], null)
+},{}]},{},["..\\..\\AppData\\Roaming\\npm\\node_modules\\parcel-bundler\\src\\builtins\\hmr-runtime.js"], null)

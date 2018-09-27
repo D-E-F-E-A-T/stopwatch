@@ -148,7 +148,14 @@ var Stopwatch = function () {
                 var li = document.createElement('li');
                 this.elem.childNodes[6].appendChild(li);
                 li.innerHTML = this.elem.childNodes[6].childElementCount + '.' + this.show;
-                console.log(this.elem.childNodes);
+
+                /*if(this.elem.childNodes[6].children[0].innerHTML = this.elem.childNodes[6].children[1].innerHTML) {
+                    console.log('true')
+                } else {
+                    console.log('false')
+                }
+                console.log(this.elem.childNodes[6].children[this.elem.childNodes[6].childElementCount-2], '<br>',this.elem.childNodes[6].childElementCount)
+                */
             }
         }
     }, {
@@ -310,7 +317,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '64267' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '65534' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

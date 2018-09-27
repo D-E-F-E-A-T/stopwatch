@@ -30,8 +30,14 @@ class Stopwatch {
             const li = document.createElement('li');
             this.elem.childNodes[6].appendChild(li);
             li.innerHTML = `${this.elem.childNodes[6].childElementCount}.${this.show}`;
-            console.log(this.elem.childNodes)
-        }
+
+            /*if(this.elem.childNodes[6].children[0].innerHTML = this.elem.childNodes[6].children[1].innerHTML) {
+                console.log('true')
+            } else {
+                console.log('false')
+            }
+            console.log(this.elem.childNodes[6].children[this.elem.childNodes[6].childElementCount-2], '<br>',this.elem.childNodes[6].childElementCount)
+        */}
     }
 
     clearLop() {
@@ -52,6 +58,7 @@ class Stopwatch {
         this.counter();
         this.clearLop();
         clearInterval(this.myTimer);
+        this.flag = false;
     }
 
     counter() {

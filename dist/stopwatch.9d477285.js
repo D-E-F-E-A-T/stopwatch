@@ -141,26 +141,30 @@ var Stopwatch = function () {
             clearInterval(this.myTimer);
         }
     }, {
-        key: 'lop',
-        value: function lop() {
-            var i = 1;
+        key: 'split',
+        value: function split() {
+            var i = 0;
             if (this.times.miliseconds != 0) {
                 var li = document.createElement('li');
                 this.elem.childNodes[6].appendChild(li);
-                li.innerHTML = this.elem.childNodes[6].childElementCount + '.' + this.show;
+                li.innerHTML = '' + this.show;
 
-                /*if(this.elem.childNodes[6].children[0].innerHTML = this.elem.childNodes[6].children[1].innerHTML) {
-                    console.log('true')
-                } else {
-                    console.log('false')
+                while (i < document.getElementsByTagName('li').length && i != 0) {
+                    var x = i + 1;
+                    if (document.getElementsByTagName('li')[i].innerText == document.getElementsByTagName('li')[x].innerText) {
+                        console.log('yes it is', document.getElementsByTagName('li')[i], '=', document.getElementsByTagName('li')[x]);
+                    } else {
+                        console.log('nope');
+
+                        console.log('nope', document.getElementsByTagName('li')[i], '=', document.getElementsByTagName('li')[x]);
+                    }
+                    i++;
                 }
-                console.log(this.elem.childNodes[6].children[this.elem.childNodes[6].childElementCount-2], '<br>',this.elem.childNodes[6].childElementCount)
-                */
             }
         }
     }, {
-        key: 'clearLop',
-        value: function clearLop() {
+        key: 'clearSplit',
+        value: function clearSplit() {
             var li_Elem = this.elem.childNodes[6].children.length;
             if (li_Elem != 0) {
                 var i = li_Elem;
@@ -177,8 +181,9 @@ var Stopwatch = function () {
             this.times.seconds = 0;
             this.times.miliseconds = 0;
             this.counter();
-            this.clearLop();
+            this.clearSplit();
             clearInterval(this.myTimer);
+            this.flag = false;
         }
     }, {
         key: 'counter',
@@ -207,10 +212,10 @@ var Stopwatch = function () {
                 _this2.stop();
             };
             this.elem.childNodes[3].onclick = function () {
-                _this2.lop();
+                _this2.split();
             };
             this.elem.childNodes[4].onclick = function () {
-                _this2.clearLop();
+                _this2.clearSplit();
             };
             this.elem.childNodes[5].onclick = function () {
                 _this2.clearAll();
@@ -243,34 +248,34 @@ var Stopwatch = function () {
             //we will refer to elements by nodes e.g this.elem.children[0] //this.elem.childNodes[length]
             var buttonStart = document.createElement('button');
             var buttonStop = document.createElement('button');
-            var buttonLop = document.createElement('button');
+            var buttonSplit = document.createElement('button');
             var buttonClear = document.createElement('button');
-            var buttonClearLop = document.createElement('button');
+            var buttonClearSplit = document.createElement('button');
             var span = document.createElement('span');
-            var ul = document.createElement('ul');
+            var ol = document.createElement('ol');
             buttonStart.textContent = 'Start';
             buttonStop.textContent = 'Stop';
-            buttonLop.textContent = 'Lop';
+            buttonSplit.textContent = 'Split';
             buttonClear.textContent = 'Clear All';
-            buttonClearLop.textContent = 'Clear Lop';
+            buttonClearSplit.textContent = 'Clear Split';
             buttonStart.setAttribute('id', 'btn_start');
             buttonStop.setAttribute('id', 'btn_stop');
-            buttonLop.setAttribute('id', 'btn_lop');
+            buttonSplit.setAttribute('id', 'btn_lop');
             buttonClear.setAttribute('id', 'btn_clear');
-            buttonClearLop.setAttribute('id', 'btn_clearLop');
+            buttonClearSplit.setAttribute('id', 'btn_clearLop');
             buttonStart.setAttribute('class', 'btn start');
             buttonStop.setAttribute('class', 'btn stop');
-            buttonLop.setAttribute('class', 'btn lop');
+            buttonSplit.setAttribute('class', 'btn lop');
             buttonClear.setAttribute('class', 'btn clear');
-            buttonClearLop.setAttribute('class', 'btn clearLop');
+            buttonClearSplit.setAttribute('class', 'btn clearLop');
             span.setAttribute('class', 'timer');
             this.elem.appendChild(span);
             this.elem.appendChild(buttonStart);
             this.elem.appendChild(buttonStop);
-            this.elem.appendChild(buttonLop);
-            this.elem.appendChild(buttonClearLop);
+            this.elem.appendChild(buttonSplit);
+            this.elem.appendChild(buttonClearSplit);
             this.elem.appendChild(buttonClear);
-            this.elem.appendChild(ul);
+            this.elem.appendChild(ol);
         }
     }, {
         key: 'display',
@@ -315,9 +320,9 @@ module.bundle.Module = Module;
 
 var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
-  var hostname = '' || location.hostname;
+  var hostname = undefined || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '65534' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '54121' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

@@ -24,23 +24,28 @@ class Stopwatch {
         clearInterval(this.myTimer);
     }
 
-    lop() {
-        var i = 1;
+    split() {
+        let i = 0;
         if(this.times.miliseconds != 0) {
             const li = document.createElement('li');
             this.elem.childNodes[6].appendChild(li);
-            li.innerHTML = `${this.elem.childNodes[6].childElementCount}.${this.show}`;
+            li.innerHTML = `${this.show}`;
 
-            /*if(this.elem.childNodes[6].children[0].innerHTML = this.elem.childNodes[6].children[1].innerHTML) {
-                console.log('true')
-            } else {
-                console.log('false')
+            while (i< document.getElementsByTagName('li').length && i != 0) {
+                let x = i + 1
+               if(document.getElementsByTagName('li')[i].innerText == document.getElementsByTagName('li')[x].innerText) {
+                    console.log('yes it is', document.getElementsByTagName('li')[i], '=', document.getElementsByTagName('li')[x])
+                } else {
+                    console.log('nope')
+
+                    console.log('nope', document.getElementsByTagName('li')[i], '=', document.getElementsByTagName('li')[x])
+                }
+                i++
             }
-            console.log(this.elem.childNodes[6].children[this.elem.childNodes[6].childElementCount-2], '<br>',this.elem.childNodes[6].childElementCount)
-        */}
+        }
     }
 
-    clearLop() {
+    clearSplit() {
         const li_Elem = this.elem.childNodes[6].children.length
         if (li_Elem != 0 ) {
             let i = li_Elem
@@ -56,7 +61,7 @@ class Stopwatch {
         this.times.seconds = 0;
         this.times.miliseconds = 0;
         this.counter();
-        this.clearLop();
+        this.clearSplit();
         clearInterval(this.myTimer);
         this.flag = false;
     }
@@ -83,10 +88,10 @@ class Stopwatch {
             this.stop();
         }
         this.elem.childNodes[3].onclick = () => {
-            this.lop();
+            this.split();
         }
         this.elem.childNodes[4].onclick = () => {
-            this.clearLop();
+            this.clearSplit();
         }
         this.elem.childNodes[5].onclick = () => {
             this.clearAll();
@@ -116,34 +121,34 @@ class Stopwatch {
     createElements() { //we will refer to elements by nodes e.g this.elem.children[0] //this.elem.childNodes[length]
         const buttonStart = document.createElement('button');
         const buttonStop = document.createElement('button');
-        const buttonLop = document.createElement('button');
+        const buttonSplit = document.createElement('button');
         const buttonClear = document.createElement('button');
-        const buttonClearLop = document.createElement('button');
+        const buttonClearSplit = document.createElement('button');
         const span = document.createElement('span');
-        const ul = document.createElement('ul');
+        const ol = document.createElement('ol');
         buttonStart.textContent = 'Start';
         buttonStop.textContent = 'Stop';
-        buttonLop.textContent = 'Lop';
+        buttonSplit.textContent = 'Split';
         buttonClear.textContent = 'Clear All';
-        buttonClearLop.textContent = 'Clear Lop';
+        buttonClearSplit.textContent = 'Clear Split';
         buttonStart.setAttribute('id', 'btn_start');
         buttonStop.setAttribute('id', 'btn_stop');
-        buttonLop.setAttribute('id', 'btn_lop');
+        buttonSplit.setAttribute('id', 'btn_lop');
         buttonClear.setAttribute('id', 'btn_clear');
-        buttonClearLop.setAttribute('id', 'btn_clearLop');
+        buttonClearSplit.setAttribute('id', 'btn_clearLop');
         buttonStart.setAttribute('class', 'btn start');
         buttonStop.setAttribute('class', 'btn stop');
-        buttonLop.setAttribute('class', 'btn lop');
+        buttonSplit.setAttribute('class', 'btn lop');
         buttonClear.setAttribute('class', 'btn clear');
-        buttonClearLop.setAttribute('class', 'btn clearLop');
+        buttonClearSplit.setAttribute('class', 'btn clearLop');
         span.setAttribute('class', 'timer');
         this.elem.appendChild(span);
         this.elem.appendChild(buttonStart);
         this.elem.appendChild(buttonStop);
-        this.elem.appendChild(buttonLop);
-        this.elem.appendChild(buttonClearLop);
+        this.elem.appendChild(buttonSplit);
+        this.elem.appendChild(buttonClearSplit);
         this.elem.appendChild(buttonClear);
-        this.elem.appendChild(ul);
+        this.elem.appendChild(ol);
     }
 
     display() {

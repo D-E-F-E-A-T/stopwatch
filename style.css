@@ -42,8 +42,8 @@
     background: -webkit-linear-gradient(left, #a7d1e2 2%, #e4f5fc 196%,#bfe8f9 2%);
 
 }
-ul {
-    width: 40vw;
+ol {
+    width: 23vw;
     margin: auto;
     overflow: auto;
     height: 15vh;
@@ -51,9 +51,11 @@ ul {
     max-width: 400px;
     padding-top: 20px;
     margin-top: 10px;
+    text-align: left;
+    padding-left: 20px;
 }
 
-ul li {
+ul ol {
     border-bottom: 1px solid #a6d9fd;
     padding: 5px;
     text-align: left;

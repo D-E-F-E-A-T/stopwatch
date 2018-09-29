@@ -2,46 +2,34 @@ class Stopwatch {
     constructor() {
         this.elem = this.display(); //main parent (container)
         this.times = this.time();
-        this.flag = false; //to prevent duble click
+        this.flag = true;
         this.createElements();
         this.handleElements();
         this.counter();
     }
 
     start() {
-        if(!this.flag){
+        if(this.flag){
             this.myTimer = setInterval(() => {
                 this.times.miliseconds++
                 this.calculate();
                 this.counter();
-                this.flag = true;
+                this.flag = false;
+                this.spitt = true;
             }, 10)
         }
     }
 
     stop() {
-        this.flag = false;
+        this.flag = true;
         clearInterval(this.myTimer);
     }
 
     split() {
-        let i = 0;
-        if(this.times.miliseconds != 0) {
+        if(!this.flag) {
             const li = document.createElement('li');
             this.elem.childNodes[6].appendChild(li);
             li.innerHTML = `${this.show}`;
-
-            while (i< document.getElementsByTagName('li').length && i != 0) {
-                let x = i + 1
-               if(document.getElementsByTagName('li')[i].innerText == document.getElementsByTagName('li')[x].innerText) {
-                    console.log('yes it is', document.getElementsByTagName('li')[i], '=', document.getElementsByTagName('li')[x])
-                } else {
-                    console.log('nope')
-
-                    console.log('nope', document.getElementsByTagName('li')[i], '=', document.getElementsByTagName('li')[x])
-                }
-                i++
-            }
         }
     }
 
@@ -54,6 +42,7 @@ class Stopwatch {
                 this.elem.childNodes[6].children[i].remove();
             }
         }
+        this.flag = true;
     }
 
     clearAll() {
@@ -63,7 +52,8 @@ class Stopwatch {
         this.counter();
         this.clearSplit();
         clearInterval(this.myTimer);
-        this.flag = false;
+        this.flag = true;
+        this.spitt = false;
     }
 
     counter() {

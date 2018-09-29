@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
+body {
 
+    background: #7d7d7d;
+}
 .container_class {
     text-align: center;
     background: -webkit-linear-gradient(left, #bfe8f9 4%,#e4f5fc 50%,#bfe8f9 97%);
@@ -52,7 +55,7 @@ ol {
     padding-top: 20px;
     margin-top: 10px;
     text-align: left;
-    padding-left: 20px;
+    padding-left: 30px;
 }
 
 ul ol {

@@ -114,8 +114,7 @@ var Stopwatch = function () {
 
         this.elem = this.display(); //main parent (container)
         this.times = this.time();
-        this.flag = true; //to prevent duble click in start method
-        this.spitt = false;
+        this.flag = true;
         this.createElements();
         this.handleElements();
         this.counter();
@@ -132,6 +131,7 @@ var Stopwatch = function () {
                     _this.calculate();
                     _this.counter();
                     _this.flag = false;
+                    _this.spitt = true;
                 }, 10);
             }
         }
@@ -139,32 +139,15 @@ var Stopwatch = function () {
         key: 'stop',
         value: function stop() {
             this.flag = true;
-            this.spitt = true;
             clearInterval(this.myTimer);
         }
     }, {
         key: 'split',
         value: function split() {
-            var i = 1;
-            console.log(this.flag, this.split, this.spitt);
-            if (!this.flag || !this.spitt) {
-                // this flag bc we dont wanna do split when time is 00:00:00 || this.split bc we wanna do one split after stopwatch is pause
+            if (!this.flag) {
                 var li = document.createElement('li');
                 this.elem.childNodes[6].appendChild(li);
                 li.innerHTML = '' + this.show;
-
-                //if() {}
-
-                /*
-                while (i < document.getElementsByTagName('li').length) {
-                    let x = i - 1
-                    if(document.getElementsByTagName('li')[i].innerText == document.getElementsByTagName('li')[x].innerText) {
-                        console.log('yes it is', document.getElementsByTagName('li')[i], '=', document.getElementsByTagName('li')[x])
-                        this.split = false
-                    }
-                    i++
-                }
-                console.log('test')*/
             }
         }
     }, {
@@ -190,6 +173,7 @@ var Stopwatch = function () {
             this.clearSplit();
             clearInterval(this.myTimer);
             this.flag = true;
+            this.spitt = false;
         }
     }, {
         key: 'counter',
@@ -326,9 +310,9 @@ module.bundle.Module = Module;
 
 var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
-  var hostname = '' || location.hostname;
+  var hostname = undefined || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '54077' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '54153' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -470,4 +454,4 @@ function hmrAccept(bundle, id) {
   });
 }
 },{}]},{},["..\\..\\AppData\\Roaming\\npm\\node_modules\\parcel-bundler\\src\\builtins\\hmr-runtime.js","stopwatch.js"], null)
-//# sourceMappingURL=/stopwatch.9d477285.map
+//# sourceMappingURL=/stopwatch.d8b725ee.map

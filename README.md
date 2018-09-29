@@ -1,1 +1,1 @@
-[Link to project live on JS Bin](https://jsbin.com/dajonozopu/edit?html,css,js,output)
+[Link to project on JS Bin jsbin.com](https://jsbin.com/foyumahuku/edit?html,css,js,output)

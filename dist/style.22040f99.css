@@ -43,7 +43,7 @@
 
 }
 ol {
-    width: 23vw;
+
     margin: auto;
     overflow: auto;
     height: 15vh;
@@ -55,11 +55,14 @@ ol {
     padding-left: 30px;
 }
 
-ul ol {
+ol li {
     border-bottom: 1px solid #a6d9fd;
     padding: 5px;
     text-align: left;
-    list-style: none;
     font-family: 'Lato', sans-serif;
     color: #0c5392;
+    margin: 5px;
+    padding: 2px;
+    padding-left: 10px;
+
 }
